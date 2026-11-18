@@ -1,10 +1,11 @@
 <?php
-
+// hahahah
 use App\Http\Controllers\Admin\AttendanceController as AttendanceManagementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaceController;
 use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StudentAttendanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +37,8 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
 
 Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'student'])->name('dashboard');
+    Route::get('/riwayat-absensi', [StudentAttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/riwayat-absensi/export', [StudentAttendanceController::class, 'export'])->name('attendance.export');
 });
 
 Route::middleware(['auth', 'role:wali'])->prefix('wali')->name('wali.')->group(function () {

@@ -29,6 +29,12 @@
                         </x-nav-link>
                     @endif
 
+                    @if (Auth::user()->role === 'student')
+                        <x-nav-link :href="route('student.attendance.index')" :active="request()->routeIs('student.attendance.*')">
+                            {{ __('Riwayat Absensi') }}
+                        </x-nav-link>
+                    @endif
+
                     <x-nav-link :href="route('leave-requests.index')" :active="request()->routeIs('leave-requests.*')">
                         {{ __('Izin/Sakit') }}
                     </x-nav-link>
@@ -124,6 +130,12 @@
 
                 <x-responsive-nav-link :href="route('attendance.checkout')" :active="request()->routeIs('attendance.checkout')">
                     {{ __('Absen Pulang') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::user()->role === 'student')
+                <x-responsive-nav-link :href="route('student.attendance.index')" :active="request()->routeIs('student.attendance.*')">
+                    {{ __('Riwayat Absensi') }}
                 </x-responsive-nav-link>
             @endif
 

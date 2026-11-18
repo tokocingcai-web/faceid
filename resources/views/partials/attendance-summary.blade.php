@@ -61,8 +61,11 @@
     </div>
 
     <div class="overflow-hidden rounded-lg bg-white shadow-sm">
-        <div class="border-b border-gray-100 p-6">
+        <div class="border-b border-gray-100 p-6 flex items-center justify-between">
             <h3 class="text-lg font-semibold text-gray-900">Riwayat Absensi</h3>
+            @if ($user->role === 'student')
+                <a href="{{ route('student.attendance.index') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Lihat semua</a>
+            @endif
         </div>
 
         @if ($recentAttendances->isEmpty())
